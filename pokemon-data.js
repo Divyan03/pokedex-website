@@ -8,8 +8,27 @@ const getPokemon = async (query) => {
     console.log(pokemon)
     
     document.getElementById('pokemon-img').setAttribute('src', pokemon.sprites.other.home.front_default)
-    document.getElementById('pokemon-name').innerHTML = pokemon.name
+    document.getElementById('pokemon-name').innerHTML = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)
+    //document.getElementById('pokemon-types').innerHTML = `${pokemon.types[0].type.name} / ${pokemon.types[1].type.name}`
+  
+    let typesDiv = document.getElementById('pokemon-types')
+    while(document.getElementById('pokemon-types').firstChild){
+        typesDiv.firstChild.remove()
+    }
+    
+    /* for(let i = 0; i < pokemon.types.length; i++){
+        typesDiv.innerHTML += `${pokemon.types[i].type.name.toUpperCase()}`
+    } */
+
+
+    for(let i = 0; i < pokemon.types.length; i++){
+        let typeSpan = document.createElement("span")
+        typeSpan.innerText = pokemon.types[i].type.name.toUpperCase()
+        typeSpan.classList.add(pokemon.types[i].type.name)
+        typesDiv.append(typeSpan)
+    }
+  
 }
 
-search_btn.addEventListener('click', () => getPokemon(search_term.value))
+search_btn.addEventListener('click', () => getPokemon(search_term.value.toLowerCase()))
 
