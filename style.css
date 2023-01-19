@@ -14,13 +14,10 @@ h3{
     width: auto;
     background-color: rgb(235, 237, 239);
     border-radius: 16px;
-    
 }
 
-
-
 .type-container{
-    margin: 5px;
+    margin: 3px;
     display: inline-block;
     text-align: center;
     line-height: 1.5rem;
