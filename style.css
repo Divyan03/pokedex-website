@@ -1,0 +1,107 @@
+*{
+    background-color: white;
+}
+
+h3{
+    font-family:"Fira Sans","Trebuchet MS",Ubuntu,Helvetica,Arial sans-serif;
+    font-size: 2rem;
+    text-align: center;
+}
+.img-box{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+    background-color: rgb(235, 237, 239);
+    border-radius: 16px;
+    
+}
+
+
+
+.type-container{
+    margin: 5px;
+    display: inline-block;
+    text-align: center;
+    line-height: 1.5rem;
+    font-size: .75rem;
+    width: 66px;
+    border-radius: 5px;
+    border: 1px solid rgba(0,0,0,.2);
+    color: white;
+    text-shadow: 1px 1px 2px rgb(0 0 0 / 70%);
+}
+
+.normal{
+    background: #aa9;
+}
+
+.fire{
+    background: #f42;
+}
+
+.water{
+    background: #39f;
+}
+
+.electric{
+    background: #fc3;
+}
+
+.grass{
+    background: #7c5;
+}
+
+.ice{
+    background: #6cf;
+}
+
+.fighting{
+    background: #b54;
+}
+
+.poison{
+    background: #a59;
+}
+
+.ground{
+    background: #db5;
+}
+
+.flying{
+    background: #89f;
+}
+
+.psychic{
+    background: #f59;
+}
+
+.bug{
+    background: #ab2;
+}
+
+.rock{
+    background: #ba6;
+}
+
+.ghost{
+    background: #66b;
+}
+
+.dragon{
+    background: #76e;
+}
+
+.dark{
+    background: #754;
+}
+
+.steel{
+    background: #aab;
+}
+
+.fairy{
+    background: #e9e;
+}
+
+
