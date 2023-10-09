@@ -7,13 +7,14 @@ const getPokemon = async (query) => {
     const pokemon = await res.json()
     
     document.getElementById('pokemon-img').setAttribute('src', pokemon["sprites"]["other"]["official-artwork"]["front_default"])
-    document.getElementById('pokemon-name').innerHTML = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)
+    document.getElementById('pokemon-name').innerHTML = pokemon.name
+    //document.getElementById('pokemon-species').innerHTML = pokemon["species"]["genus"][0]
     
     res = await fetch(pokemon["species"]["url"])
-    let pokemonDesc = await res.json();
-    console.log(pokemonDesc)
+    let pokemonUrl = await res.json();
+    console.log(pokemonUrl)
     let entry = 0
-    switch(pokemonDesc["generation"]["name"]){
+    switch(pokemonUrl["generation"]["name"]){
         case "generation-v":
             entry = 5
             break
@@ -27,9 +28,6 @@ const getPokemon = async (query) => {
             entry = 7
             break
     }
-
-    pokemonDesc = pokemonDesc["flavor_text_entries"][entry]["flavor_text"]
-    document.getElementById('flavor-text').innerHTML = pokemonDesc
     
     let typesDiv = document.getElementById('pokemon-types')
     while(document.getElementById('pokemon-types').firstChild){
@@ -43,6 +41,19 @@ const getPokemon = async (query) => {
         typeSpan.classList.add(pokemon.types[i].type.name)
         typesDiv.append(typeSpan)
     }
+
+    pokemonDesc = pokemonUrl["flavor_text_entries"][entry]["flavor_text"].replace("\f", " ").replace("POKéMON", "Pokémon")
+    document.getElementById('flavor-text').innerHTML = pokemonDesc
+    
+    let speciesNum = 0
+    for (let i = 0; i < pokemonUrl["genera"].length; i++) {
+        if (pokemonUrl["genera"][i]["language"]["name"] == "en"){
+            speciesNum = i;
+            break
+        }   
+    }
+    
+    document.getElementById('pokemon-species').innerHTML = pokemonUrl["genera"][speciesNum]["genus"]
   
 }
 
