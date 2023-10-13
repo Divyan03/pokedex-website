@@ -14,20 +14,13 @@ const getPokemon = async (query) => {
     let pokemonUrl = await res.json();
     console.log(pokemonUrl)
     let entry = 0
-    switch(pokemonUrl["generation"]["name"]){
-        case "generation-v":
-            entry = 5
+    for (let i = 0; i < pokemonUrl["flavor_text_entries"].length; i++) {
+        if (pokemonUrl["flavor_text_entries"][i]["language"]["name"] == "en"){
+            entry = i;
             break
-        case "generation-vi":
-            entry = 6
-            break
-        case "generation-vii":
-            entry = 7
-            break
-        case "generation-viii":
-            entry = 7
-            break
+        }   
     }
+    pokemonDesc = pokemonUrl["flavor_text_entries"][entry]["flavor_text"].replace("\f", " ").replace("\n", "").replace("POKéMON", "Pokémon")
     
     let typesDiv = document.getElementById('pokemon-types')
     while(document.getElementById('pokemon-types').firstChild){
@@ -42,7 +35,6 @@ const getPokemon = async (query) => {
         typesDiv.append(typeSpan)
     }
 
-    pokemonDesc = pokemonUrl["flavor_text_entries"][entry]["flavor_text"].replace("\f", " ").replace("POKéMON", "Pokémon")
     document.getElementById('flavor-text').innerHTML = pokemonDesc
     
     let speciesNum = 0
